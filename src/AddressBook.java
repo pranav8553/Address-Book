@@ -93,14 +93,15 @@ public class AddressBook {
 		Details details[] = new Details[100];
 
 		Scanner sc = new Scanner(System.in);
-		int choice;
 		int count = 0;
 		System.out.println("Welcome to the Address Book Management System");
 		while (true) {
 			System.out.println("1. Add");
 			System.out.println("2. Display");
+			System.out.println("3. Update");
+
 			System.out.println("Enter your choice");
-			choice = sc.nextInt();
+			int choice = sc.nextInt();
 			
 			switch (choice) {
 			case 1:
@@ -145,7 +146,58 @@ public class AddressBook {
 				}
 				System.out.println();
 				break;
-				
+			case 3: 
+				System.out.println("****Update Record****");
+				System.out.println("Enter contact no.");
+				long contactSearch = sc.nextLong();
+				for (int i=0; i<details.length; i++){
+					if (details[i] != null && details[i].getPhoneNo()==contactSearch){
+						System.out.println(details[i].getFirstName());
+						System.out.println("Please select field you need to edit");
+						System.out.println("1. Address");
+						System.out.println("2. City");
+						System.out.println("3. State");
+						System.out.println("4. Zipcode");
+						System.out.println("5. Phone Number");
+						int choiceUpdate = sc.nextInt();
+						switch (choiceUpdate) {
+						case 1:
+							System.out.println("Enter your Address");
+							String addressUpdate = sc.next();
+							details[i].setAddress(addressUpdate);
+							System.out.println("Address Updated");
+							break;
+						case 2:
+							System.out.println("Enter your City ");
+							String cityUpdate = sc.next();
+							details[i].setCity(cityUpdate);
+							System.out.println("City Updated");
+							break;
+						case 3:
+							System.out.println("Enter your State");
+							String stateUpdate = sc.next();
+							details[i].setState(stateUpdate);
+							System.out.println("State Updated");
+							break;
+						case 4:
+							System.out.println("Enter Your Zipcode");
+							int zipcodeUpdate = sc.nextInt();
+							details[i].setZip(zipcodeUpdate);
+							System.out.println("Zipcode Updated");
+							break;
+						case 5:
+							System.out.println("Enter Phone Number");
+							long phoneUpdate = sc.nextLong();
+							details[i].setPhoneNo(phoneUpdate);
+							System.out.println("Phone Number Updated");
+							break;
+						default:
+							System.out.println("Update Invalid choive! Enter again..\n");
+							break;
+						}							
+					}
+				}
+				break;
 			default:
 				System.out.println("Invalid choive! Enter again..\n");
 				break;
