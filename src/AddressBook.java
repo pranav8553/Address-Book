@@ -81,11 +81,9 @@ class Details {
 	}
 
 	public String toString() {
-		return "Details [FirstName=" + firstName + ", LastName=" + lastName
-				+ ", Address=" + address + ", City=" + city + ", State="
-				+ state + ", Zip=" + zip + ", PhoneNo=" + phoneNo + "]";
+		return firstName + "\t\t" + lastName + "\t\t" + address + "\t\t" + city
+				+ "\t\t" + state + "\t\t" + zip + "\t\t" + phoneNo;
 	}
-
 }
 
 public class AddressBook {
@@ -103,7 +101,7 @@ public class AddressBook {
 			System.out.println("2. Display");
 			System.out.println("Enter your choice");
 			choice = sc.nextInt();
-
+			
 			switch (choice) {
 			case 1:
 				System.out.println("*****ADD RECORDS*****");
@@ -132,20 +130,26 @@ public class AddressBook {
 				person.setZip(zipcode);
 
 				System.out.println("Enter your Phone Number");
-				int phone = sc.nextInt();
+				long phone = sc.nextLong();
 				person.setPhoneNo(phone);
 				details[count++] = new Details(firstName, lastName, address,
 						city, state, zipcode, phone);
 				System.out.println("Your records are successfully added\n");
 				break;
-
+				
+			case 2:
+				System.out.println("****Display Records****");
+				System.out.print("Firstname \tLastname \tAddress \t\tCity \t\tState \t\t\tZIP \t\tPhone \n");
+				for (int i = 0; i < count; i++) {
+					System.out.println(details[i]);
+				}
+				System.out.println();
+				break;
+				
 			default:
 				System.out.println("Invalid choive! Enter again..\n");
 				break;
 			}
-
 		}
-
 	}
-
 }
