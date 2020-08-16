@@ -100,6 +100,8 @@ public class AddressBook {
 			System.out.println("2. Display");
 			System.out.println("3. Update");
 			System.out.println("4. Delete");
+			System.out.println("5. Search");
+			System.out.println("6. Exit");
 
 			System.out.println("Enter your choice");
 			int choice = sc.nextInt();
@@ -214,14 +216,28 @@ public class AddressBook {
 				System.out.println(" ");
 				System.out.println("Enter phone number for deletion : ");
 				long PhoneDelete = sc.nextLong();
-				for (int i = 0; i <= count; i++) {
-					if (details[i] != null
-							&& details[i].getPhoneNo() == PhoneDelete) {
+				for (int i = 0; i < details.length; i++) {
+					if (details[i] != null && details[i].getPhoneNo() == PhoneDelete) {
 						details[i] = null;
 						System.out.println("Record deleted successfully");
+						break;
+					}										
+				}				
+				break;
+			case 5:
+				System.out.println("*****Search a person*****");
+				System.out.println("Enter Phone Number to search: ");
+				long PhoneSearch = sc.nextLong();
+				for (int i = 0; i < details.length; i++) {
+					if (details[i] != null && details[i].getPhoneNo()==PhoneSearch) {
+						System.out.print("Firstname \tLastname \tAddress \t\tCity \t\tState \t\t\tZIP \t\tPhone \n");
+						System.out.println(details[i]);
 					}
 				}
 				break;
+			case 6:
+				System.out.println("Exited from the Address book.");
+				System.exit(0);
 			default:
 				System.out.println("Invalid choive! Enter again..\n");
 				break;
