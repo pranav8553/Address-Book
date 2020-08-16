@@ -99,61 +99,75 @@ public class AddressBook {
 			System.out.println("1. Add");
 			System.out.println("2. Display");
 			System.out.println("3. Update");
+			System.out.println("4. Delete");
 
 			System.out.println("Enter your choice");
 			int choice = sc.nextInt();
-			
+
 			switch (choice) {
 			case 1:
 				System.out.println("*****ADD RECORDS*****");
-				System.out.println("Enter the First name");
-				String firstName = sc.next();
-				person.setFirstName(firstName);
+				System.out.println("How many records you want to add?");
+				int numOfRecods = sc.nextInt();
+				for (int i = 1; i <= numOfRecods; i++) {
+					System.out.println("Enter the First name");
+					String firstName = sc.next();
+					person.setFirstName(firstName);
 
-				System.out.println("Enter the Last name");
-				String lastName = sc.next();
-				person.setLastName(lastName);
+					System.out.println("Enter the Last name");
+					String lastName = sc.next();
+					person.setLastName(lastName);
 
-				System.out.println("Enter your Address");
-				String address = sc.next();
-				person.setAddress(address);
+					System.out.println("Enter your Address");
+					String address = sc.next();
+					person.setAddress(address);
 
-				System.out.println("Enter your City");
-				String city = sc.next();
-				person.setCity(city);
+					System.out.println("Enter your City");
+					String city = sc.next();
+					person.setCity(city);
 
-				System.out.println("Enter your State");
-				String state = sc.next();
-				person.setState(state);
+					System.out.println("Enter your State");
+					String state = sc.next();
+					person.setState(state);
 
-				System.out.println("Enter your Zip Code");
-				int zipcode = sc.nextInt();
-				person.setZip(zipcode);
+					System.out.println("Enter your Zip Code");
+					int zipcode = sc.nextInt();
+					person.setZip(zipcode);
 
-				System.out.println("Enter your Phone Number");
-				long phone = sc.nextLong();
-				person.setPhoneNo(phone);
-				details[count++] = new Details(firstName, lastName, address,
-						city, state, zipcode, phone);
-				System.out.println("Your records are successfully added\n");
+					System.out.println("Enter your Phone Number");
+					long phone = sc.nextLong();
+					person.setPhoneNo(phone);
+
+					details[count++] = new Details(firstName, lastName,
+							address, city, state, zipcode, phone);
+					System.out.println(i + " records added successfully");
+				}
+
+				System.out.println("All records are added successfully\n");
 				break;
-				
+
 			case 2:
 				System.out.println("****Display Records****");
-				System.out.print("Firstname \tLastname \tAddress \t\tCity \t\tState \t\t\tZIP \t\tPhone \n");
+				System.out
+						.print("Firstname \tLastname \tAddress \t\tCity \t\tState \t\t\tZIP \t\tPhone \n");
 				for (int i = 0; i < count; i++) {
+					if (details[i] == null) {
+						continue;
+					}
 					System.out.println(details[i]);
 				}
 				System.out.println();
 				break;
-			case 3: 
+			case 3:
 				System.out.println("****Update Record****");
 				System.out.println("Enter contact no.");
 				long contactSearch = sc.nextLong();
-				for (int i=0; i<details.length; i++){
-					if (details[i] != null && details[i].getPhoneNo()==contactSearch){
+				for (int i = 0; i < details.length; i++) {
+					if (details[i] != null
+							&& details[i].getPhoneNo() == contactSearch) {
 						System.out.println(details[i].getFirstName());
-						System.out.println("Please select field you need to edit");
+						System.out
+								.println("Please select field you need to edit");
 						System.out.println("1. Address");
 						System.out.println("2. City");
 						System.out.println("3. State");
@@ -192,9 +206,24 @@ public class AddressBook {
 							System.out.println("Phone Number Updated");
 							break;
 						default:
-							System.out.println("Update Invalid choive! Enter again..\n");
+
+							System.out
+									.println("Update Invalid choive! Enter again..\n");
 							break;
-						}							
+						}
+					}
+				}
+				break;
+			case 4:
+				System.out.println("*****Delete the record*****");
+				System.out.println(" ");
+				System.out.println("Enter phone number for deletion : ");
+				long PhoneDelete = sc.nextLong();
+				for (int i = 0; i <= count; i++) {
+					if (details[i] != null
+							&& details[i].getPhoneNo() == PhoneDelete) {
+						details[i] = null;
+						System.out.println("Record deleted successfully");
 					}
 				}
 				break;
